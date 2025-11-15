@@ -2,7 +2,7 @@ import random
 import asyncio
 import httpx
 from fastapi import FastAPI
-from prometheus_client import start_http_server, Counter, Histogram, Gauge, make_asgi_app
+from prometheus_client import Counter, Histogram, Gauge, make_asgi_app
 import uvicorn
 
 app = FastAPI()
