@@ -1,3 +1,7 @@
+"""
+Application for probing http codes returned on requests
+"""
+
 import random
 import asyncio
 import httpx
@@ -20,6 +24,9 @@ CODES = [200, 300, 400, 500]
 URL = "https://httpbin.org/status/{}"
 
 async def probe():
+    """
+    probe function to loop through the codes array
+    """
     async with httpx.AsyncClient() as client:
         while True:
             code = random.choice(CODES)
@@ -29,7 +36,7 @@ async def probe():
             try:
                 await client.get(URL.format(code), timeout=10)
                 LATENCY.labels(code=code).observe(asyncio.get_event_loop().time() - start)
-            except Exception as e:
+            except httpx.HTTPError as e:
                 FAILURES.labels(code=code, error=type(e).__name__).inc()
             finally:
                 IN_FLIGHT.dec()
@@ -37,15 +44,24 @@ async def probe():
 
 @app.on_event("startup")
 async def startup():
+    """
+    startup function that creates the probe task
+    """
     # start_http_server(8000)  # Prometheus metrics
     asyncio.create_task(probe())
 
 @app.get("/")
 def home():
+    """
+    home function to return status
+    """
     return {"status": "probing httpbin.org"}
 
 @app.get("/health")
 def health():
+    """
+    health function to return status
+    """
     return {"status": "ok"}
 
 if __name__ == "__main__":
