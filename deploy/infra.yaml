@@ -1,0 +1,14 @@
+---
+- name: Manage Kubernetes Resources
+  hosts: all
+  become: yes
+  tasks:
+    - name: Apply deployment configuration
+      command: kubectl apply -f deployment.yaml
+
+    - name: Apply prometheus configuration
+      command: kubectl apply -f prometheus.yaml
+
+    - name: Apply Grafana configuration
+      command: kubectl apply -f grafana.yaml
+
