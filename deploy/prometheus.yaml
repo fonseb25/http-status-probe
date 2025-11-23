@@ -19,7 +19,9 @@ data:
     scrape_configs:
       - job_name: 'prometheus'
         static_configs:
-          - targets: ['localhost:9090']
+          - targets: ['http-status-probe.application.svc.cluster.local:8000']
+        metrics_path: /metrics
+        scheme: http
 
 ---
 apiVersion: apps/v1
