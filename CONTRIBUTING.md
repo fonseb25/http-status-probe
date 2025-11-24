@@ -6,13 +6,8 @@ First off — thank you for considering contributing! 🙏 We welcome contributi
 
 1. [How Can I Contribute?](#how-can-i-contribute)  
 2. [Development Setup](#development-setup)  
-3. [Code Style & Guidelines](#code-style--guidelines)  
-4. [Testing](#testing)  
-5. [Submitting a Pull Request](#submitting-a-pull-request)  
-6. [Reporting Issues](#reporting-issues)  
-7. [Communication](#communication)  
-8. [Code of Conduct](#code-of-conduct)  
-9. [Acknowledgments](#acknowledgments)
+3. [Submitting a Pull Request](#submitting-a-pull-request)  
+4. [Reporting Issues](#reporting-issues)
 
 ---
 
